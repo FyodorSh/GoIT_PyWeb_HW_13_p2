@@ -1,0 +1,45 @@
+{% extends "app_quotes/base.html" %}
+{% block content %}
+
+<div class="mt-2">
+    <h5>Top tags</h5>
+
+    {% for tag in most_popular_tag %}
+    <a href="{% url 'app_quotes:tag' tag%}" class="btn btn-light">#{{ tag }}</a>
+    {% endfor %}
+</div>
+<div class="mt-2">
+    <h3>Quotes</h3>
+    {% for quote in page_obj %}
+    <div class="card-body bg-body-tertiary m-2">
+        <div>
+            <strong>{{ quote.author }}</strong>
+            <a href="{% url 'app_quotes:author' quote.author %}" class="btn btn-info">About author...</a>
+        </div>
+        <p class="card-text">{{ quote.text }}</p>
+        {% for tag in quote.get_quote_tags %}
+        <a href="{% url 'app_quotes:tag' tag%}" class="btn btn-info">#{{ tag }}</a>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="text-success">
+  <hr>
+</div>
+<div class="mt-2">
+    <nav aria-label="...">
+        <ul class="pagination">
+            {% for page in page_obj.paginator.page_range %}
+                {% if page_obj.number == page %}
+                    <li class="page-item">{{ page }}</li>
+                {% else %}
+                    <li class="page-item">
+                        <a href="?page={{ page }}" class="page-link">{{ page }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

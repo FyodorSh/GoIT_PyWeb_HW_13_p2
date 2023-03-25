@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "goit-pyweb-hw-10"
+version = "0.1.0"
+description = ""
+authors = ["fyodor <fyodor.shevchenko@gmail.com>"]
+readme = "README.md"
+packages = [{include = "goit_pyweb_hw_10"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.7"
+psycopg2 = "^2.9.5"
+pillow = {extras = ["pil"], version = "^9.4.0"}
+django-environ = "^0.10.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
